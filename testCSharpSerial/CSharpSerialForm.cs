@@ -345,6 +345,7 @@ namespace testCSharpSerial
             string userIDString;
             string userAddressString;
             packetAnalysisData.DataToTimeFormatAndUserID(userSendData, packetAddressData, out timeFormatString, out userIDString, out userAddressString);
+            label_ClientAddress.Text = "当前终端地址: " + userAddressString;
             GlobalVariableClass.addDutyRecord(timeFormatString, userIDString, userAddressString);//广播事件  添加纪录到DataGridView
         }
 
@@ -357,7 +358,7 @@ namespace testCSharpSerial
                     break;
                 case 0x01:
                     recordNowUserIDandTime(packetAddressData, userSendData);
-                break;
+                    break;
 
             }
         }
@@ -410,7 +411,6 @@ namespace testCSharpSerial
             SendPacketSignByte = packetSignByte;
             SendResponseCommandByte = responseCommandByte;
 
-            byte ad = 0;
             SendPacketFollowLength = userSendDataLength + 3 ;
             SendPacketFollowLengthData[0] = BitConverter.GetBytes(SendPacketFollowLength)[1];
             SendPacketFollowLengthData[1] = BitConverter.GetBytes(SendPacketFollowLength)[0];
