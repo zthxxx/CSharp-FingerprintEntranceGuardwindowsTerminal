@@ -352,6 +352,9 @@ namespace testCSharpSerial
         {
             switch (packetSignByte)
             {
+                case 0x00:
+                    packetSendBytesData.SendPacketAddressData = packetAddressData;
+                    break;
                 case 0x01:
                     recordNowUserIDandTime(packetAddressData, userSendData);
                 break;
@@ -539,7 +542,7 @@ namespace testCSharpSerial
             }
         }
 
-        public void dataInitialise(byte[] bytesData)//导入数据
+        public void dataInitialise(byte[] bytesData)//导出数据 只用数组没用FIFO缓冲  不安全 因此放弃此方法
         {
             if (!(bytesData.Length >= minPacketBytesCount)) return;//基础解析字节长12
             Array.Copy(bytesData, 0, AnalysisPacketStratData, 0, 2);
@@ -615,7 +618,6 @@ namespace testCSharpSerial
             timeFormat += ByteToASCIIString(timeASCIIArray);
             return timeFormat;
         }
-        //, out string userAddressString
         public void DataToTimeFormatAndUserID(byte[] timeUserData, byte[] packetAddressData, out string timeFormatString, out string userIDString, out string userAddressString)//将时间戳与用户ID解析分开
         {
             byte timeDataBytesLength = 14; ;
@@ -802,6 +804,5 @@ namespace testCSharpSerial
             }
             return responseBitMeaing;
         }
-        
     }
 }
