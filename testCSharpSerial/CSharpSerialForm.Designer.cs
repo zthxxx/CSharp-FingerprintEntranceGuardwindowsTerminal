@@ -56,6 +56,7 @@
             this.button_SaveSerialPortConnection = new System.Windows.Forms.Button();
             this.button_AddAppointUserID = new System.Windows.Forms.Button();
             this.button_DelAppointUserID = new System.Windows.Forms.Button();
+            this.button_ReadMCULocalAddress = new System.Windows.Forms.Button();
             this.groupBox_ReceiveArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_UserAndTimeList)).BeginInit();
             this.SuspendLayout();
@@ -358,6 +359,17 @@
             this.button_DelAppointUserID.UseVisualStyleBackColor = true;
             this.button_DelAppointUserID.Click += new System.EventHandler(this.button_DelAppointUserID_Click);
             // 
+            // button_ReadMCULocalAddress
+            // 
+            this.button_ReadMCULocalAddress.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_ReadMCULocalAddress.Location = new System.Drawing.Point(380, 417);
+            this.button_ReadMCULocalAddress.Name = "button_ReadMCULocalAddress";
+            this.button_ReadMCULocalAddress.Size = new System.Drawing.Size(75, 23);
+            this.button_ReadMCULocalAddress.TabIndex = 24;
+            this.button_ReadMCULocalAddress.Text = "获取地址";
+            this.button_ReadMCULocalAddress.UseVisualStyleBackColor = true;
+            this.button_ReadMCULocalAddress.Click += new System.EventHandler(this.button_ReadMCULocalAddress_Click);
+            // 
             // CSharpSerialForm
             // 
             this.AcceptButton = this.button_OpenOrCloseSerialPort;
@@ -367,6 +379,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(868, 483);
             this.ControlBox = false;
+            this.Controls.Add(this.button_ReadMCULocalAddress);
             this.Controls.Add(this.button_DelAppointUserID);
             this.Controls.Add(this.button_AddAppointUserID);
             this.Controls.Add(this.button_SaveSerialPortConnection);
@@ -432,6 +445,7 @@
         private System.Windows.Forms.Button button_SaveSerialPortConnection;
         private System.Windows.Forms.Button button_AddAppointUserID;
         private System.Windows.Forms.Button button_DelAppointUserID;
+        private System.Windows.Forms.Button button_ReadMCULocalAddress;
     }
 }
 

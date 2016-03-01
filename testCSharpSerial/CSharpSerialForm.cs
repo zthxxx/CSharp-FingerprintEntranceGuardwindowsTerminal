@@ -46,6 +46,7 @@ namespace testCSharpSerial
             button_AddAppointUserID.Enabled = false;
             button_DelAppointUserID.Enabled = false;
             button_SaveSerialPortConnection.Enabled = false;
+            button_ReadMCULocalAddress.Enabled = false;
             isSerialPortConfigFinished = false;
             //Application.Idle += (object sender, EventArgs e) => { TestBoxAppend("dfa"); }; Lambda Test
         }
@@ -181,6 +182,7 @@ namespace testCSharpSerial
             button_DelAppointUserID.Enabled = !button_DelAppointUserID.Enabled;
             isSerialPortConfigFinished = !isSerialPortConfigFinished;
             button_SaveSerialPortConnection.Enabled = !button_SaveSerialPortConnection.Enabled;
+            button_ReadMCULocalAddress.Enabled = !button_ReadMCULocalAddress.Enabled;
 
         }
         private void button_OpenOrCloseSerialPort_Click(object sender, EventArgs e)
@@ -317,6 +319,14 @@ namespace testCSharpSerial
             byte[] NewUserIDByteData = getInputNumBytes();
             if (NewUserIDByteData != null)
                 sendSerialOnePacket(0x09, 0x05, NewUserIDByteData);
+        }
+        private void button_ReadMCULocalAddress_Click(object sender, EventArgs e)
+        {
+            byte[] lastPacketAddressData = new byte[4];
+            Array.Copy(packetSendBytesData.SendPacketAddressData, 0, lastPacketAddressData, 0, 4);
+            packetSendBytesData.SendPacketAddressData = GlobalVariableClass.fingerprintPocketData.PACKET_ADDRESS_READ_REQUEST_DATA; 
+            sendSerialOnePacket(0x00, 0x00, new byte[0]);
+            packetSendBytesData.SendPacketAddressData = lastPacketAddressData;
         }
 
         private byte[] getInputNumBytes()
@@ -503,7 +513,6 @@ namespace testCSharpSerial
                     if (receiveBytesDataFIFO.Count == 0) return false;//基础解析字节长12
                     AnalysisPacketStratData[0] = AnalysisPacketStratData[1];
                     AnalysisPacketStratData[1] = receiveBytesDataFIFO.Dequeue();
-                   //pocketStartCheckData
                 } while (!AnalysisPacketStratData.SequenceEqual(standardPocketStartData));
             
                 queueDataPop(ref AnalysisAddressData, 4);

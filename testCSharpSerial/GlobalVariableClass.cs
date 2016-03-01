@@ -21,11 +21,13 @@ namespace testCSharpSerial
         {
             public byte[] PACKET_STRAT_DATA;
             public byte[] PACKET_ADDRESS_DATA;
+            public byte[] PACKET_ADDRESS_READ_REQUEST_DATA;
             public byte USER_ID_PREFIX_BYTE;
             public FingerprintPocketData(bool isInitialise)
             {
                 PACKET_STRAT_DATA = new byte[] { 0xEF, 0x02 };
                 PACKET_ADDRESS_DATA = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF };
+                PACKET_ADDRESS_READ_REQUEST_DATA = new byte[] { 0xFF, 0xEE, 0xDD, 0xCC };
                 USER_ID_PREFIX_BYTE = 0xAB;
             }
         }
