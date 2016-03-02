@@ -73,6 +73,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalysisPacketBytesData.cs" />
+    <Compile Include="CombinePacketBytesData.cs" />
     <Compile Include="CSharpInputBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
