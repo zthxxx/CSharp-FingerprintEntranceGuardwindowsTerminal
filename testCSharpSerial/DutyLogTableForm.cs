@@ -106,7 +106,10 @@ namespace testCSharpSerial
             }
             else
             {
-                label_VariableUserSector.Text = label_VariableUserName.Text = "";
+                label_VariableUserOffice.Text = String.Empty;
+                label_VariableUserDutyTime.Text = String.Empty;
+                label_VariableUserSector.Text = String.Empty;
+                label_VariableUserName.Text = String.Empty;
             }
         }
     }

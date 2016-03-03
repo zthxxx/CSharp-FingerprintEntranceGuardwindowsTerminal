@@ -322,9 +322,8 @@
             this.label_ClientAddress.AutoSize = true;
             this.label_ClientAddress.Location = new System.Drawing.Point(530, 22);
             this.label_ClientAddress.Name = "label_ClientAddress";
-            this.label_ClientAddress.Size = new System.Drawing.Size(89, 12);
+            this.label_ClientAddress.Size = new System.Drawing.Size(0, 12);
             this.label_ClientAddress.TabIndex = 20;
-            this.label_ClientAddress.Text = "当前终端地址: ";
             // 
             // button_SaveSerialPortConnection
             // 
