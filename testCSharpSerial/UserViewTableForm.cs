@@ -16,7 +16,7 @@ namespace testCSharpSerial
         public UserViewTableForm()
         {
             InitializeComponent();
-            GlobalVariableClass.multicastDataBaseObjectEvent += receiveDataBaseObject;
+            GlobalVariableClass.MulticastDataBaseObjectEvent += receiveDataBaseObject;
         }
 
         private void UserViewTableForm_Load(object sender, EventArgs e)

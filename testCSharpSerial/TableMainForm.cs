@@ -23,8 +23,8 @@ namespace testCSharpSerial
         public TableMainForm()
         {
             InitializeComponent();
-            todayDutyLogTableForm = new DutyLogTableForm(GlobalVariableClass.todayDutylog);
-            historyDutyLogTableForm = new DutyLogTableForm(GlobalVariableClass.historyDutylog);
+            todayDutyLogTableForm = new TodayDutyLogForm(GlobalVariableClass.todayDutylogTitle);
+            historyDutyLogTableForm = new HistoryDutyLogForm(GlobalVariableClass.historyDutylogTitle);
             fingerConfigForm = new CSharpSerialForm(new GlobalVariableClass.configFinishedJump(configFinishedJumpOtherForm));
             dataBaseServerConfigForm = new DataBaseServerConfigForm(new GlobalVariableClass.configFinishedJump(configFinishedJumpOtherForm));
             userViewTableForm = new UserViewTableForm();
@@ -40,10 +40,8 @@ namespace testCSharpSerial
             fingerConfigForm.Activate();
         }
 
-        private void midChildFormConfig(Object midChildFormObj)
+        private void midChildFormConfig(Form midChildForm)
         {
-            Form midChildForm;
-            midChildForm = (Form)midChildFormObj;
             midChildForm.MdiParent = this;
             midChildForm.WindowState = FormWindowState.Maximized;
             midChildForm.Dock = DockStyle.Fill;

@@ -90,6 +90,12 @@
     <Compile Include="DataBaseServerConfigForm.Designer.cs">
       <DependentUpon>DataBaseServerConfigForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HistoryDutyLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TodayDutyLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UserViewTableForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -12,22 +12,17 @@ namespace testCSharpSerial
 {
     public partial class DutyLogTableForm : Form
     {
-        public MysqlClientLinkClass mysqlClientLinkClass;//debug
-        private bool isTodayDutyLog;
-        public DutyLogTableForm(bool isTodayDutyLog)
+        public static MysqlClientLinkClass mysqlClientLinkClass;//debug
+        public bool isTodayDutyLog;
+        public DutyLogTableForm(string dutyLogTableTitle)
         {
             InitializeComponent();
             GlobalVariableClass.AddDutyRecordDataGridViewEvent += addOneRecordToDataGridView;
-            GlobalVariableClass.multicastDataBaseObjectEvent += receiveDataBaseObject;
-            this.isTodayDutyLog = isTodayDutyLog;
-            if (this.isTodayDutyLog)
+            GlobalVariableClass.MulticastDataBaseObjectEvent += receiveDataBaseObject;
+            label_DutyLogTable.Text = dutyLogTableTitle;
+            if(Array.IndexOf(GlobalVariableClass.GetAddDutyRecordEventList(), (GlobalVariableClass.addOneRecordToDataGridView)insertOneDutyLogIntoDataBase) < 0)
             {
-                label_DutyLogTable.Text = "今日执勤记录表";
                 GlobalVariableClass.AddDutyRecordDataGridViewEvent += insertOneDutyLogIntoDataBase;
-            }
-            else
-            {
-                label_DutyLogTable.Text = "历史执勤记录表";
             }
         }
 
@@ -41,18 +36,14 @@ namespace testCSharpSerial
             mysqlClientLinkClass = dataBaseObject;
             if (mysqlClientLinkClass.isMysqlDataBaseConnected)
             {
-                if (isTodayDutyLog)
-                {
-                    dutyDataTable = mysqlClientLinkClass.getMysqlSelectDataTable("select cdt,f_id,addr from f_user where cdt >='" + DateTime.Now.ToShortDateString() + "'");//今日记录
-                }
-                else
-                {
-                    dutyDataTable = mysqlClientLinkClass.getMysqlSelectDataTable("select cdt,f_id,addr from f_user ");//所有记录
-                }
+                dutyDataTable = mysqlClientLinkClass.getMysqlSelectDataTable(seachDutyLogSql());
                 dataGridView_UserAndTimeList.DataSource = dutyDataTable;
             }
         }
-
+        protected virtual string seachDutyLogSql()
+        {
+            return String.Empty;
+        }
         public void addOneRecordToDataGridView(string timeString, string userIDNum, string userAddressString)
         {
             if (dataGridView_UserAndTimeList.DataSource != null)
@@ -66,7 +57,7 @@ namespace testCSharpSerial
             }
         }
 
-        public void insertOneDutyLogIntoDataBase(string timeString, string userIDNum, string userAddressString)
+        public static void insertOneDutyLogIntoDataBase(string timeString, string userIDNum, string userAddressString)
         {
             string sqlCommandString = "";
             if (mysqlClientLinkClass != null)

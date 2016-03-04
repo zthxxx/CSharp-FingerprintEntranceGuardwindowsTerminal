@@ -12,10 +12,13 @@ namespace testCSharpSerial
         public delegate void addOneRecordToDataGridView(string timeString, string userIDNum, string userAddressString);
         public static event addOneRecordToDataGridView AddDutyRecordDataGridViewEvent;
         public delegate void multicastDataBaseObject(MysqlClientLinkClass dataBaseObject);
-        public static event multicastDataBaseObject multicastDataBaseObjectEvent;
+        public static event multicastDataBaseObject MulticastDataBaseObjectEvent;
         public delegate void configFinishedJump();
         public static bool todayDutylog = true;
+        public static string todayDutylogTitle = "今日执勤记录表";
         public static bool historyDutylog = false;
+        public static string historyDutylogTitle = "历史执勤记录表";
+
 
         public struct FingerprintPocketData
         {
@@ -40,10 +43,16 @@ namespace testCSharpSerial
         }
         public static void multicastMysqlDataBaseObject(MysqlClientLinkClass dataBaseObject)
         {
-            if (multicastDataBaseObjectEvent != null)
+            if (MulticastDataBaseObjectEvent != null)
             {
-                multicastDataBaseObjectEvent(dataBaseObject);
+                MulticastDataBaseObjectEvent(dataBaseObject);
             }
+        }
+
+        public static Delegate[] GetAddDutyRecordEventList()
+        {
+            Delegate[] EvenHandlelist = AddDutyRecordDataGridViewEvent.GetInvocationList();
+            return EvenHandlelist;
         }
     }
 }
